@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-startup-image" href="" />  
+
+  <title>Arbeitsgemeinschaft Natur- und Heimatschutz Baselland</title>
+
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="libs/leaflet/leaflet.ie.css" /><![endif]-->
+<!--  <link rel="stylesheet" href="../app.css" />-->
+
+<style>
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+
+ <!-- <link rel="stylesheet" href="../src/leaflet-search.css" /> -->
+  <link rel="stylesheet" href="../src/leaflet.label.css" />
+  <link rel="stylesheet" href="../src/leaflet.awesome-markers.css">
+
+ <!-- <link href="../src/font-awesome.css" rel="stylesheet">
+-->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="../src/Control.Geocoder.css" />
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+  <script src="../src/utils/LineUtil.Snapping.js"></script>
+  <script src="../src/utils/Marker.Snapping.js"></script>
+  <script src="../src/L.Routing.js"></script>
+  <script src="../src/L.Routing.Storage.js"></script>
+  <script src="../src/L.Routing.Draw.js"></script>
+  <script src="../src/L.Routing.Edit.js"></script>
+
+  <!-- <script src="../src/leaflet-search.js"></script>
+
+  <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+  <script src="../layer/tile/Google.js"></script>   -->
+  
+  <script src="../src/Control.Geocoder.js"></script>
+
+  <script src='../src/easy-button.js'></script>
+ 
+  <script src="../control/Permalink.js"></script>
+  <script src="../control/Permalink.Marker.js"></script>
+  <script src="../control/Permalink.Layer.js"></script>
+
+<!--  <script src="../src/L.TileLayer.Multi.js"></script> -->
+
+  <script src="../src/leaflet.dbpedialayer-src.js"></script>
+
+  <script src="../src/leaflet.label.js"></script>
+
+  <script src="../src/OverPassLayer.js"></script>
+
+  <script src="../src/leaflet.awesome-markers.js"></script>
+
+
+
+
+</head>
+
+<body style="padding:0px;margin:0px">
+
+  <div id="map"></div>
+  <div id="menu" style="padding:5px;position:absolute;top:20px;left:20px;background:#fff;font-size:25px">ANHBL</div>
+  <div id="dialog">
+
+<!-- <div style="position:relative;top:0px;right:10px;width:500px;height:50px;">sdfgsfgsafg.</div>
+-->
+<h1>Arbeitsgemeinschaft für Natur- und Heimatschutz Baselland</h1>
+
+<div style="background:#eee;padding:20px;">
+<p style="font-weight:bold;">"Die Herrschaft des Menschen über die Tiere und über die Erde
+ist keine souveräne, unbeschränkte,
+sondern einen verliehene und darum verantwortliche"</p>
+
+<p style="position:relative;left:200px;">Max Huber</p>
+</div>
+
+<h2>Einführung</h2>
+
+
+
+<p>In der Geschichte der Naturschutzbstrebungen - die im Baselbiet institutionell 1906 mit der "Naturschutzkommission beider Basel" beginnt - spiegelt sich die Geschichte einer zunehmenden Verarmung der Natur. Ein Rückblick zeigt, dass der beharrliche Einsatz von Naturschützern und ihrer Organisationen im Laufe der Zeit trotzdem einige Erfolge gebracht hat. Aber unverkennbar bleibt die Tatsache, dass die Natur-, Umwelt- und Heimatschutzbemühungen auch auf staatlicher Ebene der fortschreitenden Zerstörung nur wenig Einhalt gebieten konnten.</p>
+
+<p>1950 geht aus der "Kommission für Landschaftsgestaltung" (erster Präsident: Emil Weitnauer, Oltingen) die Arbeitsgemeinschaft für Natur- und Heimatschutz Baselland ANHBL hervor. Diese vesteht sich als Dachverband der Baselbieter Natur- und Heimatschutzgruppierungen (Statutenrevision 3. Oktober 1970).</p>
+<p>Heute sind neben den verschiedensten Natur-, Heimat- und Umweltschutzvereinen die meisten Baselbieter Gemeinden sowie öffentliche und private Unternehmungen Mitglieder der ANHBL. Darin unterscheidet sie sich von anderen grösseren kantonalen Verbänden, die vor allem durch ihre Ortssektionen oder durch eine breite Zahl von Einzelmitgliedern getragen werden (Basellandschaftlicher Natur- und Vogelschutzverband BNV, Pro Natura Baselland).</p>
+
+<h2>Aufgaben</h2>
+
+<p>Ein Ausschuss führt die Geschäfte der ANHBL. Er tritt periodisch zusammen.
+Die Mitglieder tragen durch ihre jährlichen Beiträge die Aufwendungen der ANHBL, welche vor allem für die Mitfinanzierung von Informationstagungen, Publikationen, Studien, Naturschutzgebieten, Heimatschutzvorhaben, kleinere Forschungsarbeiten und Gutachten eingesetzt werden.</p>
+<p>Die ANHBL legt Wert auf ein konstruktives Gespräch mit Beamten und Politikern aller Parteien auf Gemeinde- und Kantonsebene. Aktuelle Themen werden anlässlich der Delegiertenversammlung oder im Rahmen von Tagungen bearbeitet.</p>
+
+<h2>Öffentlichkeitsarbeit</h2>
+
+<p>Projekte, welche die ANHBL in den vergangenen Jahren durchgeführt oder finanziell unterstützt hat:</p>
+
+<h3>Tagungen:</h3>
+
+<ul>
+    <li>Biotopverbund,</li>
+
+    <li>Natur- und Artenschutz im Siedlungsraum,</li>
+
+    <li>Geschichte des Naturschutzes,</li>
+
+    <li>Ökologie im Garten,</li>
+
+    <li>Gesetzesinitiative für einen wirksamen Naturschutz.</li>
+</ul>
+
+<h3>Tonbildschau:</h3>
+<ul>
+    <li>Natur in Bauernhand</li>
+</ul>
+
+<h3>Ausstellungen:</h3>
+<ul>
+    <li>'Perlon, Petticoats und Pestizide' der studentischen Arbeitsgruppe zur Umweltgeschichte.</li>
+</ul>
+<h3>Forschungsarbeiten:</h3>
+<ul>
+    <li>Erfolgskontrolle von ökologischen Ausgleichsmassnahmen anhand der Nutzarthropodenfauna, mit Schwerpunkt Laufkäfer und Spinnen</li>
+
+    <li>Langzeituntersuchung über Feuersalamander</li>
+
+    <li>Druckkostenbeitrag an Festschrift Prof. H. Zoller</li>
+</ul>
+
+<h3>Praktischer Naturschutz:</h3>
+<ul>
+    <li>Kauf einer Parzelle im Rebberg Sissach</li>
+
+    <li>Bau einer Weiheranlage in Oberdorf</li>
+
+    <li>Anlage von ökologischen Ausgleichsflächen auf vier Bauernhöfen</li>
+</ul>
+
+<h2>Mitgliederbeiträge</h2>
+
+<p>Die Einnahmen der ANHBL bestehen aus Beiträgen der angeschlossenen Körperschaften, der Gemeinden und aus Zuwendungen von Firmen und Gönnern.</p>
+
+
+   </div>
+ 
+</body>
+
+    <script src="map.js"></script>
+    <script>
+ $(function() {
+      $("#dialog").dialog({minWidth:800,maxHeight:600,title:'Kennen Sie die ANHBL?'}).on('dialogclose',function(event,ui){$("#menu").show();});
+      $("#menu").hide();
+      $("#menu").on('click',function(){$("#dialog").dialog('open');$("#menu").hide();});
+});
+    </script>
+</html>

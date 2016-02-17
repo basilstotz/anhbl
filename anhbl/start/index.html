@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-startup-image" href="" />  
+
+  <title>Arbeitsgemeinschaft Natur- und Heimatschutz Baselland</title>
+
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="libs/leaflet/leaflet.ie.css" /><![endif]-->
+<!--  <link rel="stylesheet" href="../app.css" />-->
+
+<style>
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+
+ <!-- <link rel="stylesheet" href="../src/leaflet-search.css" /> -->
+  <link rel="stylesheet" href="../src/leaflet.label.css" />
+  <link rel="stylesheet" href="../src/leaflet.awesome-markers.css">
+
+ <!-- <link href="../src/font-awesome.css" rel="stylesheet">
+-->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="../src/Control.Geocoder.css" />
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+  <script src="../src/utils/LineUtil.Snapping.js"></script>
+  <script src="../src/utils/Marker.Snapping.js"></script>
+  <script src="../src/L.Routing.js"></script>
+  <script src="../src/L.Routing.Storage.js"></script>
+  <script src="../src/L.Routing.Draw.js"></script>
+  <script src="../src/L.Routing.Edit.js"></script>
+
+  <!-- <script src="../src/leaflet-search.js"></script>
+-->
+  <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+  <script src="../layer/tile/Google.js"></script>  
+  
+  <script src="../src/Control.Geocoder.js"></script>
+
+  <script src='../src/easy-button.js'></script>
+ 
+  <script src="../control/Permalink.js"></script>
+  <script src="../control/Permalink.Marker.js"></script>
+  <script src="../control/Permalink.Layer.js"></script>
+
+<!--  <script src="../src/L.TileLayer.Multi.js"></script> -->
+
+  <script src="../src/leaflet.dbpedialayer-src.js"></script>
+
+  <script src="../src/leaflet.label.js"></script>
+
+  <script src="../src/OverPassLayer.js"></script>
+
+  <script src="../src/leaflet.awesome-markers.js"></script>
+
+
+     <script type='text/javascript' src='http://datejs.googlecode.com/files/date.js'></script>
+	<script type='text/javascript' src='../GCalEvents.js'></script>
+
+<link rel="stylesheet" href="../easy-dist/easyPrint.css"/>
+    <script src="../easy-dist/jQuery.print.js"></script> 
+    <script src="../easy-dist/leaflet.easyPrint.js"></script>
+
+ <!--<script src="../jquery.csv-0.71.js"></script>-->
+<script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+
+
+	<link rel="stylesheet" href="../mc/MarkerCluster.css" />
+<link rel="stylesheet" href="../mc/MarkerCluster.Default.css" />
+<script src="../mc/leaflet.markercluster-src.js"></script>
+
+
+</head>
+
+<body style="padding:0px;margin:0px">
+
+  <div id="map"></div>
+  <div id="menu" style="padding:5px;position:absolute;bottom:30px;right:20px;background:#fff;font-size:25px">ANHBL</div>
+  <div id="dialog">
+
+<!-- <div style="position:relative;top:0px;right:10px;width:500px;height:50px;">sdfgsfgsafg.</div>
+-->
+<h1>Arbeitsgemeinschaft für Natur- und Heimatschutz Baselland</h1>
+
+<p>Auf der Karte dieser Webseite sind regionale
+
+Informationen dargestellt.
+
+In der Rubrik ANHBL finden Sie Angaben zu
+
+zielverwandten Organisationen, Gemeinden,
+
+Bürgergemeinden, Medien und Stiftungen
+
+(Natur­ und Heimatschutz, Bildung). Ebenso
+
+gibt es Informationen zu Ökobüros und
+
+Firmen, welche im Umweltbereich tätig sind.
+
+Des weiteren enthält die Karte
+
+Unternehmungen, welche finanzielle
+
+Zuwendungen an die ANHBL geleistet haben.</p>
+
+<p>Gerne bieten wir Ihnen die Möglichkeit an,
+
+regionale Daten auf dieser Website zu
+
+platzieren. Wir freuen uns auch auf Beiträge
+
+von Personen, die sich für Anliegen des Natur-
+und Heimatschutzes einsetzen möchten.</p>
+
+<iframe src="https://www.google.com/calendar/embed?showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=anhbl.events%40gmail.com&amp;color=%232952A3&amp;ctz=Europe%2FZurich" style=" border-width:0 " width="750" height="600" frameborder="0" scrolling="no"></iframe>
+<!--
+<div>
+  <ul id="gcal-events">
+    <li>Noch keine Veranstaltungen</li>
+   </ul>
+</div>
+-->
+
+<div>
+
+
+</div>
+
+<h2>Über uns</h2>
+
+<div style="background:#eee;padding:20px;">
+<p style="font-weight:bold;">"Die Herrschaft des Menschen über die Tiere und über die Erde
+ist keine souveräne, unbeschränkte,
+sondern einen verliehene und darum verantwortliche"</p>
+
+<p style="position:relative;left:200px;">Max Huber<span  style="vertical-align:super;font-size:small">*</span></p>
+</div>
+
+
+<p>In der Geschichte der Naturschutzbestrebungen - die im Baselbiet institutionell 1906 mit der "Naturschutzkommission beider Basel" beginnt - spiegelt sich die Geschichte einer zunehmenden Verarmung der Natur. Ein Rückblick zeigt, dass der beharrliche Einsatz von Naturschützern und ihrer Organisationen im Laufe der Zeit trotzdem einige Erfolge gebracht hat. Aber unverkennbar bleibt die Tatsache, dass die Natur-, Umwelt- und Heimatschutzbemühungen auch auf staatlicher Ebene der fortschreitenden Zerstörung nur wenig Einhalt gebieten konnten.</p>
+
+<p>Auch wenn inzwischen auf regionaler Ebene durch Renaturierungen mehr Lebensräume geschaffen werden und so eine Trendwende erkennbar erscheint, finden sich auf globaler Ebene nur wenige ermutigende Zeichen.</p>
+
+<p>1950 geht aus der "Kommission für Landschaftsgestaltung" (erster Präsident: Emil Weitnauer, Oltingen) die Arbeitsgemeinschaft für Natur- und Heimatschutz Baselland ANHBL hervor.</p>
+
+
+
+<p>Heute sind neben den verschiedensten Natur-, Heimat- und Umweltschutzvereinen, Baselbieter Gemeinden, sowie öffentliche und private Unternehmungen Mitglieder der ANHBL. Darin unterscheidet sie sich von anderen grösseren kantonalen Verbänden, die vor allem durch ihre Ortssektionen oder durch eine breite Zahl von Einzelmitgliedern getragen werden (Basellandschaftlicher Natur- und Vogelschutzverband BNV, Pro Natura Baselland).</p>
+<p>Ein Ausschuss führt die Geschäfte der ANHBL. Er tritt periodisch zusammen. Die Mitglieder tragen durch ihre jährlichen Beiträge die Aufwendungen der ANHBL. Die ANHBL ist regelmässig an der ECO-Messe (vormals Natura) vertreten und kann zielverwandten regionalen Organisationen einen gemeinsamen Messe-Auftritt anbieten.</p> 
+<!--
+<p>Mit dieser Webseite können regionale Informationen und Daten in einem geografischen Kontext dargestellt werden. Gerne bieten wir zielverwandten Institutionen die Möglichkeit Daten auf dieser Website zu plazieren. Wir freuen uns auch auf Beiträge von Personen, die sich für Anliegen des Natur- und Heimatschutzes einsetzen möchten.</p>
+-->
+<h3>ANHBL-Ausschuss</h3>
+
+<table style="width=100%;">
+<tr style="vertical-align:top;">
+
+<td>Dr. Martin Dick (Präsident)<br/>
+Kleinriehenstr. 100, 4058 Basel<br/>	
+Tel: 061 601 56 73<br/> 
+E-Mail: martin.dick56@gmail.com&nbsp;&nbsp;<br/><br/></td>
+
+<td>René Oeschger (Kassier)<br/>
+Unterdorfstr. 15A, 4634 Wisen<br/>
+Tel:  062 501 11 11<br/></br>
+</td>
+
+</tr>
+
+<tr style="vertical-align:top;">
+
+<td>Roland Gerber<br/>
+Eptingerstr. 1, 4436 Oberdorf<br/>
+Tel: 061 961 87 03<br/>
+E-Mail: gerber.liestal@umweltplan.ch&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+</td>
+
+<td align="top">Dr. Lukas Pfiffner<br/>
+Haldenweg 27, 4460 Gelterkinden<br/>
+Tel: 061 981 45 37<br/>
+E-Mail: lukas.pfiffner@fibl.org<br/>
+</td>
+
+</tr>
+<tr align="top"><td>Christian Erdin<br/>
+Kleinriehenstr. 102, 4058 Basel<br/>
+Tel: 061 692 51 35<br/>
+E-Mail: christian.erdin@bluewin.ch<br/><br/></td><td>
+</td>
+
+</tr>
+
+</table>
+
+<p style="font-size:small">*Max Huber, schweizerischer Jurist, * 28. 12. 1874 Zürich, † 1. 1. 1960 Zürich; Professor in Zürich, Richter am Ständigen Internationalen Gerichtshof in Den Haag (1925–1930),
+1928–1944 Präsident des Internationalen Komitees vom Roten Kreuz.</p>
+<!--
+<iframe src="https://www.google.com/calendar/embed?src=2iejlpbjb52n3gonrns7a092mk%40group.calendar.google.com&ctz=Europe/Zurich" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+-->
+   </div>
+ 
+</body>
+
+
+    <script>
+
+    </script>
+    <script src="map.js"></script>
+</html>
