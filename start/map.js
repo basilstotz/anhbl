@@ -20,9 +20,14 @@ if(plain==="true"){
 
  $(function() {
    if(!plain){
-      $("#dialog").dialog({minWidth:800,maxHeight:600,title:'Kennen Sie die ANHBL?'}).on('dialogclose',function(event,ui){$("#menu").show();});
+      $("#dialog").dialog({minWidth:800,maxHeight:600,title:'Veranstaltungskalender zielverwandter Organisationen'}).on('dialogclose',function(event,ui){$("#menu").show();});
       $("#menu").hide();
       $("#menu").on('click',function(){$("#dialog").dialog('open');$("#menu").hide();});
+
+      $("#dialog2").dialog({minWidth:800,maxHeight:600,title:'Kennen Sie die ANHBL?',autoOpen:false}).on('dialogclose',function(event,ui){$("#menu2").show();});
+      $("#menu2").show();
+      $("#menu2").on('click',function(){$("#dialog2").dialog('open');$("#menu2").hide();});
+
 
 GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40group.calendar.google.com/public/basic?orderby=starttime&sortorder=ascending&max-results=3&futureevents=true&alt=json");
 }
