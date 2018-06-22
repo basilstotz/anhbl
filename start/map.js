@@ -209,11 +209,11 @@ GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40g
       attribution: 'tiles &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
 
-
+//bs......
 
     topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       minZoom:0,
-      maxZoom: 16,
+      maxZoom: 17,
       attribution: 'tiles &copy; <a href="http://www.statkart.no/">OpenTopomap</a>'
     });
 
@@ -279,6 +279,13 @@ GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40g
       attribution: 'tiles &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
 
+/*
+  var osmbuildings= new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
+                            attribution: 'Map tiles &copy; <a href="https://mapbox.com">MapBox</a>',
+                            maxZoom: 18,
+                            maxNativeZoom: 20
+                          });
+*/   
 
 
 //overlays
@@ -613,6 +620,47 @@ GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40g
     });
 
 
+    var farmshop = new L.OverPassLayer({
+      query: "http://overpass-api.de/api/interpreter?data=[out:json];(node(BBOX)['shop'='farm'];);out;",
+//      query: "http://overpass-api.de/api/interpreter?data=[out:json];node['shop'='farm']({{bbox}});out;",
+      callback: function(data) {
+        for(i=0;i<data.elements.length;i++) {
+          e = data.elements[i];
+
+          if (e.id in this.instance._ids) return;
+          this.instance._ids[e.id] = true;
+          var pos = new L.LatLng(e.lat, e.lon);
+          var popup = this.instance._poiInfo(e.tags,e.id);
+
+          var draw_it=true;
+          color='red';
+          glyph='grain';
+
+          /*
+          switch(e.tags.amenity){
+             default:
+                 color='grey';
+                 glyph='question';
+                 break;
+          }
+          */
+
+          if(draw_it){ 
+           var icon = L.AwesomeMarkers.icon({
+                      icon: glyph,
+                      prefix:'fa',
+                      markerColor: color
+                     });
+            var marker = L.marker(pos,{icon: icon}).bindPopup(popup);
+            this.instance.addLayer(marker);
+
+          }
+        }
+      },
+        minzoom:10
+    });
+
+
 //wiki
     var wiki = L.dbPediaLayer({lang:'de',
 				includeCities:true,
@@ -623,7 +671,8 @@ GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40g
 
 //multi tile layer
     mtl= L.layerGroup([osmwms_low,topo,osm_high]);
-
+//      mtl= L.layerGroup([top0]);
+//bs...............
 //map
     map = new L.Map('map', { 
 //      layers: topo,
@@ -713,19 +762,21 @@ GCalEvents("https://www.google.com/calendar/feeds/2iejlpbjb52n3gonrns7a092mk%40g
 
 var baseLayers= 
 {
-        'OpenTopomap': mtl,
+//        'OpenTopomap': mtl,
+        'OpenTopoMap': topo,
         'Mapnik': osm,
         'Mapnik-S/W': bw_mapnik,
         'Mapnik-Ohne': tool_ohne,
+//        'OsmBuildings': osmbuildings,
 //        'Humanitarian': humanitarian,
 //        'OSM-WMS': osmwms,
-//        'Light':light,
+        'Light':light,
 //        'Refuges': refuges,
 //        'geobl': geobl1,
 //        'adminwms':adminwms,
 //        'Relief': hs,
-//        'Toner': toner,
-//        'Watercolor':water_color,
+        'Toner': toner,
+        'Watercolor':water_color,
         'Satelite': sat,
         'Google Terain':ggl2,
         'Google Road':ggl
@@ -734,6 +785,8 @@ var baseLayers=
       //  'Terrain': toner_terrain,
 };
 
+//var osmb=new OSMBuildings(map).load();
+
 if(plain){
 var overlays=
 {
@@ -741,11 +794,12 @@ var overlays=
      //  'Anschriften':toner_hybrid,
         'Wandern': hiking,
       //  'Biking': biking,
- 
+
+       'Verkauf ab Hof' : farmshop, 
        'ÖV': transport,
         'Wikipedia': wiki,
         'Tourismus': tourism,
-        'Amenity': amenity,
+        'Freizeit': amenity,
         'Einkaufen': shops
  
       //  'tool_label': tool_label,
@@ -761,10 +815,11 @@ var overlays=
         'Wandern': hiking,
       //  'Biking': biking,
  
+       'Verkauf ab Hof' : farmshop, 
        'ÖV': transport,
         'Wikipedia': wiki,
         'Tourismus': tourism,
-        'Amenity': amenity,
+        'Freizeit': amenity,
         'Einkaufen': shops
  
       //  'tool_label': tool_label,
